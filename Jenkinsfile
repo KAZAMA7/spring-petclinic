@@ -1,0 +1,15 @@
+pipeline{
+   agent { docker 'maven:3.5-alpine'}
+   stages {
+      stage('checkout'){
+        steps{
+        git 'https://github.com/KAZAMA7/spring-petclinic.git'
+           }
+         }
+        stage('build'){
+           steps{
+              sh 'mv clean package'
+           }
+         }
+      }
+   }
