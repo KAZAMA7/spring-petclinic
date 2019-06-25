@@ -16,8 +16,9 @@ pipeline{
          }
          stage('deploying application'){
            steps{
-             sh 'scp target/*.jar slave1:/tmp/petclinic/'
-             sh 'ssh slave1 "nohup java -jar /tmp/petclinic/*.jar &"'
+              sh 'ssh slave1 rm -rf /tmp/petclinic/*'
+              sh 'scp target/*.jar slave1:/tmp/petclinic/'
+              sh 'ssh slave1 "nohup java -jar /tmp/petclinic/*.jar &"'
              }
            }
       }
